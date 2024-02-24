@@ -5,46 +5,63 @@ using UnityEngine;
 
 public class PuzzleArcadeMaster : MonoBehaviour
 {
+    PuzzleArcadeMaster instance;
+
     float timeToLock;
     [SerializeField] float minTimeToLock;
     [SerializeField] float maxTimeToLock;
 
     [SerializeField] PuzzleArcadeScroll[] arcadesScrolls;
+    [SerializeField] string[] arcadesCurrentGames;
     [SerializeField] float timeScroll;
     [SerializeField] List<int> shuffledList;
+    [SerializeField] Sprite SpaceInvaders;
+
 
 
     void Start()
     {
         timeToLock = Random.Range(minTimeToLock, maxTimeToLock);
         StartCoroutine(lockGame());
-        //InvokeRepeating(nameof(GenerateRandomImage), timeScroll, timeScroll);
+        arcadesCurrentGames = new string[arcadesScrolls.Length];
+        InvokeRepeating(nameof(GenerateRandomImage), timeScroll, timeScroll);
 
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < arcadesScrolls.Length; i++)
+        {
+            arcadesCurrentGames[i] = arcadesScrolls[i].currentImage;
+        }
+
+        //tirar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ExecutePuzzle();
+        }
     }
 
     void GenerateRandomImage(int arrayLength)
     {
-        do
+
+        int num1 = Random.Range(0, arcadesScrolls.Length);
+        int num2 = Random.Range(0, arcadesScrolls.Length);
+        int num3 = Random.Range(0, arcadesScrolls.Length);
+
+        while (num2 == num1)
         {
-            shuffledList = new List<int>();
+            num2 = Random.Range(0, arcadesScrolls.Length);
+        }
 
-            for (int i = 0; i < arrayLength; i++)
-            {
-                shuffledList.Add(i);
-            }
+        while (num3 == num1 || num3 == num2)
+        {
+            num3 = Random.Range(0, arcadesScrolls.Length);
+        }
 
-            shuffledList = shuffledList.OrderBy(x => Random.value).ToList();
-
-            for (int i = 0; i < arcadesScrolls.Length; i++)
-            {
-                arcadesScrolls[i].rend.sprite = arcadesScrolls[i].ImagesScroll[shuffledList[i]];
-                arcadesScrolls[i].ImagesIndex = shuffledList[i];
-            }
-        } while
-        (arcadesScrolls[0].lastIndex == arcadesScrolls[0].ImagesIndex &&
-        arcadesScrolls[1].lastIndex == arcadesScrolls[1].ImagesIndex &&
-        arcadesScrolls[2].lastIndex == arcadesScrolls[2].ImagesIndex
-        );
+        Debug.Log("RandomNumber1: " + num1);
+        Debug.Log("RandomNumber2: " + num2);
+        Debug.Log("RandomNumber3: " + num3);
     }
 
     IEnumerator lockGame()
@@ -52,22 +69,46 @@ public class PuzzleArcadeMaster : MonoBehaviour
         yield return new WaitForSeconds(timeToLock);
 
         arcadesScrolls[0].CancelInvoke();
-        arcadesScrolls[1].CancelInvoke();
-        arcadesScrolls[2].CancelInvoke();
+        arcadesScrolls[0].rend.sprite = SpaceInvaders;
+        arcadesScrolls[0].currentImage = "SpaceInvaders";
 
-        arcadesScrolls[0].rend.sprite = arcadesScrolls[0].ImagesScroll[0];
-        arcadesScrolls[1].rend.sprite = arcadesScrolls[1].ImagesScroll[0];
-        arcadesScrolls[2].rend.sprite = arcadesScrolls[2].ImagesScroll[0];
+        yield return new WaitForSeconds(2);
 
-        yield return new WaitForSeconds(3);
-
-        for (int i = 0; i < arcadesScrolls.Length; i++)
-        {
-            arcadesScrolls[i].StartScroll();
-        }
+        arcadesScrolls[0].StartScroll();
 
         timeToLock = Random.Range(minTimeToLock, maxTimeToLock);
         StartCoroutine(lockGame());
+    }
+
+    void ExecutePuzzle()
+    {
+        //int counterGames = 0;
+
+        //for (int i = 0; i < arcadesCurrentGames.Length; i++)
+        //    if (arcadesCurrentGames[i] == "SpaceInvaders")
+        //{
+        //    {
+        //        counterGames++;
+        //    }
+        //}
+
+        //if (counterGames >= 3)
+        //{
+        //    Debug.Log("Win");
+        //}
+        //else
+        //{
+        //    Debug.Log("Lose");
+        //}
+
+        if (arcadesScrolls[0].currentImage == "SpaceInvaders")
+        {
+            Debug.Log("Win");
+        }
+        else
+        {
+            Debug.Log("Lose");
+        }
     }
 
 
