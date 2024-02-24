@@ -294,9 +294,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 484843718}
-  - component: {fileID: 484843719}
   - component: {fileID: 484843721}
+  - component: {fileID: 484843719}
   - component: {fileID: 484843720}
+  - component: {fileID: 484843725}
   - component: {fileID: 484843723}
   - component: {fileID: 484843722}
   m_Layer: 6
@@ -438,6 +439,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &484843725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484843717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e972f0b536d1cf4dafda3993b05c060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasPickedUp: 0
+  pickUpTransform: {fileID: 800181473}
+  distanceToPickUp: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  pickedUpObject: {fileID: 0}
+  invisible: {fileID: 2100000, guid: aa40da2b20ab335449379d690097408d, type: 2}
 --- !u!1 &762502027
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +782,7 @@ Transform:
   m_GameObject: {fileID: 800181472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.5}
+  m_LocalPosition: {x: 0.5, y: -0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1068,7 +1089,7 @@ GameObject:
   - component: {fileID: 1555734366}
   m_Layer: 0
   m_Name: Pot 1
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1155,7 +1176,7 @@ Transform:
   m_GameObject: {fileID: 1555734365}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.849424, y: 11.68568, z: -1.7867141}
+  m_LocalPosition: {x: -23.349424, y: 11.68568, z: 2.713286}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1170,7 +1191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1625919722}
-  - component: {fileID: 1625919721}
+  - component: {fileID: 1625919723}
   m_Layer: 0
   m_Name: Pot Room
   m_TagString: Untagged
@@ -1178,23 +1199,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1625919721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625919720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbc7b6d80afe97458a3ba328785d77f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pots:
-  - {fileID: 1555734369}
-  - {fileID: 2120096269}
-  - {fileID: 1631170168}
-  distanceToComplete: 3
 --- !u!4 &1625919722
 Transform:
   m_ObjectHideFlags: 0
@@ -1210,10 +1214,27 @@ Transform:
   m_Children:
   - {fileID: 1555734369}
   - {fileID: 2120096269}
-  - {fileID: 1631170168}
+  - {fileID: 1733801273}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1631170164
+--- !u!114 &1625919723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625919720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cbc7b6d80afe97458a3ba328785d77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pots:
+  - {fileID: 1555734369}
+  - {fileID: 2120096269}
+  - {fileID: 1733801273}
+  distanceToComplete: 6
+--- !u!1 &1733801272
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1221,24 +1242,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1631170168}
-  - component: {fileID: 1631170167}
-  - component: {fileID: 1631170166}
-  - component: {fileID: 1631170165}
+  - component: {fileID: 1733801273}
+  - component: {fileID: 1733801276}
+  - component: {fileID: 1733801275}
+  - component: {fileID: 1733801274}
   m_Layer: 0
   m_Name: Pot 3
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1631170165
+--- !u!4 &1733801273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733801272}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.849424, y: 11.68568, z: 0.7132859}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1625919722}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1733801274
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631170164}
+  m_GameObject: {fileID: 1733801272}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1255,13 +1291,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!23 &1631170166
+--- !u!23 &1733801275
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631170164}
+  m_GameObject: {fileID: 1733801272}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1297,29 +1333,14 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1631170167
+--- !u!33 &1733801276
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631170164}
+  m_GameObject: {fileID: 1733801272}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1631170168
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631170164}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.849424, y: 11.68568, z: -0.7867141}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1625919722}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1829145571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1595,7 +1616,7 @@ GameObject:
   - component: {fileID: 2120096266}
   m_Layer: 0
   m_Name: Pot 2
-  m_TagString: Untagged
+  m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1682,7 +1703,7 @@ Transform:
   m_GameObject: {fileID: 2120096265}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.849424, y: 11.68568, z: 0.21328592}
+  m_LocalPosition: {x: -25.349424, y: 11.68568, z: 3.213286}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []

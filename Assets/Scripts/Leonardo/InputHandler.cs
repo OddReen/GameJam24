@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputHandler : MonoBehaviour
@@ -24,8 +26,7 @@ public class InputHandler : MonoBehaviour
             inputActions.Gameplay.Choose.performed += context => isChoosing = context.ReadValueAsButton();
             inputActions.Gameplay.Choose.canceled += context => isChoosing = context.ReadValueAsButton();
 
-            inputActions.Gameplay.PickUp.performed += context => isPickingUp = context.ReadValueAsButton();
-            inputActions.Gameplay.PickUp.canceled += context => isPickingUp = context.ReadValueAsButton();
+            inputActions.Gameplay.PickUp.performed += context => isPickingUp = true;
 
             inputActions.Gameplay.Run.performed += context => isRunning = context.ReadValueAsButton();
             inputActions.Gameplay.Run.canceled += context => isRunning = context.ReadValueAsButton();
