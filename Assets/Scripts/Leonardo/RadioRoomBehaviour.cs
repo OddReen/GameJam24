@@ -15,13 +15,14 @@ public class RadioRoomBehaviour : MonoBehaviour
     [SerializeField] float beginSpace;
     [SerializeField] float endSpace;
     [SerializeField] float endSound;
-    bool canPress = false;
+    [SerializeField] bool canPress = false;
     bool isPlaying = true;
 
     private void Start()
     {
         Instance = this;
         radioVoice = RuntimeManager.CreateInstance(radioVoiceEvent);
+        ExecutePuzzle();
     }
     public void ExecutePuzzle()
     {
@@ -31,13 +32,12 @@ public class RadioRoomBehaviour : MonoBehaviour
     {
         radioVoice.start();
         RuntimeManager.AttachInstanceToGameObject(radioVoice, radio);
-        while (isPlaying)
+        while (radioVoice)
         {
             yield return new WaitForSeconds(beginSpace);
             canPress = true;
             yield return new WaitForSeconds(endSpace);
             canPress = false;
-            yield return new WaitForSeconds(endSound);
         }
         canPress = false;
     }

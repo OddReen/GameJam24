@@ -38,6 +38,7 @@ public class RoomHandler : MonoBehaviour
         switch (currentRoom)
         {
             case RoomType.WhiteRoom:
+
                 break;
             case RoomType.BlueRoom: //arcade room
                 PuzzleArcadeMaster.instance.ExecutePuzzle();
