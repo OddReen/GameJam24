@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{25b2cfff-d00c-4329-a12d-786e176c260c}">
+		<property name="assetPath">
+			<value>space_button/correct_sound.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8.0607709750566894</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fc5ccc50-b72f-4686-a497-cd2258164142}</destination>
+		</relationship>
+	</object>
+</objects>
