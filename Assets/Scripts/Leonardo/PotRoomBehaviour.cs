@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PotRoomBehaviour : MonoBehaviour
 {
@@ -7,10 +8,27 @@ public class PotRoomBehaviour : MonoBehaviour
     [SerializeField] Transform[] pots;
 
     [SerializeField] float distanceToComplete;
+
+    bool isComplete;
     private void Awake()
     {
         Instance = this;
     }
+
+    private void Update()
+    {
+        if (isComplete && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.PurpleRoom)
+        {
+
+            PuzzlesController.instance.potPuzzle = true;
+            PuzzlesController.instance.CheckAllPuzzles();
+        }
+        else if (!isComplete && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.PurpleRoom)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
     public void PotsDistance()
     {
         for (int i = 0; i < pots.Length; i++) // First Pot
@@ -40,7 +58,7 @@ public class PotRoomBehaviour : MonoBehaviour
     }
     private void Completed()
     {
-        Debug.Log("Completed");
+        isComplete = true;
     }
     private void OnDrawGizmos()
     {

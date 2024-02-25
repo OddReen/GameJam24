@@ -16,6 +16,9 @@ public class PickUpHandler : MonoBehaviour
 
     Coroutine coroutine;
 
+
+    FMODUnity.EventReference pickUpSound;
+    FMODUnity.EventReference DropSound;
     private void Awake()
     {
         inputHandler = GetComponent<InputHandler>();
@@ -23,6 +26,12 @@ public class PickUpHandler : MonoBehaviour
     private void Update()
     {
         StartCoroutine(IsPickingUp());
+
+        if (hasPickedUp)
+        {
+            pickedUpObject.transform.position = pickUpTransform.position;
+        }
+
         if (inputHandler.isPickingUp && !hasPickedUp)
         {
             PickUp();
@@ -40,13 +49,14 @@ public class PickUpHandler : MonoBehaviour
             if (hit.collider.CompareTag("Pickable"))
             {
                 pickedUpObject = hit.collider.gameObject;
-                pickedUpObject.transform.SetParent(pickUpTransform);
+                //pickedUpObject.transform.SetParent(pickUpTransform);
                 pickedUpObject.transform.position = pickUpTransform.position;
                 pickedUpObject.transform.rotation = Quaternion.Euler(-90, pickUpTransform.rotation.y, pickUpTransform.rotation.z);
 
                 pickedUpObject.GetComponent<Collider>().enabled = false;
                 hasPickedUp = true;
                 coroutine = StartCoroutine(GhostingHighlight());
+                FMODUnity.RuntimeManager.PlayOneShot(pickUpSound);
             }
         }
     }
@@ -65,6 +75,7 @@ public class PickUpHandler : MonoBehaviour
                     StopCoroutine(coroutine);
                     Destroy(ghostObject);
                     pickedUpObject = null;
+                    FMODUnity.RuntimeManager.PlayOneShot(DropSound);
                 }
                 return;
             }

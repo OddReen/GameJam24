@@ -18,7 +18,8 @@ public class PuzzleArcadeMaster : MonoBehaviour
     [SerializeField] Sprite SpaceInvaders;
     [SerializeField] Sprite FinalImage;
 
-
+    public FMODUnity.EventReference puzzleGood;
+    public FMODUnity.EventReference puzzleBad;
 
     void Start()
     {
@@ -91,6 +92,9 @@ public class PuzzleArcadeMaster : MonoBehaviour
                 arcadesScrolls[i].CancelInvoke();
                 arcadesScrolls[i].rend.sprite = FinalImage;
 
+                FMODUnity.RuntimeManager.PlayOneShot(puzzleGood);
+
+
                 PuzzlesController.instance.arcadePuzzle = true;
                 PuzzlesController.instance.CheckAllPuzzles();
 
@@ -99,6 +103,7 @@ public class PuzzleArcadeMaster : MonoBehaviour
         else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            FMODUnity.RuntimeManager.PlayOneShot(puzzleBad);
         }
     }
 

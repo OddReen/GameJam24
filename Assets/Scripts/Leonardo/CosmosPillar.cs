@@ -8,7 +8,7 @@ public class CosmosPillar : MonoBehaviour
     public void PutObjectOnTop(GameObject gameObject)
     {
         gameObject.transform.SetParent(transform);
-        gameObject.transform.position = transform.position + Vector3.up * 0.5f;
+        gameObject.transform.position = transform.position + Vector3.up * 1f;
         if (gameObject.GetComponent<CosmosObject>().objectType == pillarType)
         {
             rightObject = true;

@@ -29,13 +29,16 @@ public class RadioRoomBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.BlueRoom)
+        if (canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.GreenRoom)
         {
+            FMODUnity.EventReference puzzleGood;
+            FMODUnity.EventReference puzzleBad;
+
             radioVoice.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             PuzzlesController.instance.radioPuzzle = true;
             PuzzlesController.instance.CheckAllPuzzles();
         }
-        else if (!canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.BlueRoom)
+        else if (!canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.GreenRoom)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

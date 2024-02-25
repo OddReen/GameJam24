@@ -546,7 +546,7 @@ MonoBehaviour:
   Path: Assets/fmod/pace_on_space/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638444463082368858
+  lastModified: 638444562446563735
   FileSizes:
   - Name: Desktop
     Value: 1228
@@ -650,7 +650,7 @@ MonoBehaviour:
   - {fileID: 2398877148973478650}
   StringsBanks:
   - {fileID: -1773773756604917161}
-  cacheTime: 638444463082368858
+  cacheTime: 638444562446563735
   cacheVersion: 131616
 --- !u!114 &155769595209933880
 MonoBehaviour:
@@ -745,7 +745,7 @@ MonoBehaviour:
   Path: Assets/fmod/pace_on_space/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638444463082338796
+  lastModified: 638444562446523652
   FileSizes:
   - Name: Desktop
     Value: 14973952

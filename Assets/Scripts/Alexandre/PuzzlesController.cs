@@ -11,6 +11,8 @@ public class PuzzlesController : MonoBehaviour
     public bool radioPuzzle;
     public bool elementsPuzzle;
 
+    public Animator anim;
+
 
     private void Start()
     {
@@ -36,6 +38,12 @@ public class PuzzlesController : MonoBehaviour
             return;
         }
 
+        Invoke(nameof(End), 2);
         //win 
+    }
+
+    public void End()
+    {
+        anim.SetTrigger("End");
     }
 }

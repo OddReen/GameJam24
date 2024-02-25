@@ -114,13 +114,13 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - sliceOffsetDst: -0.046348117
+    - sliceOffsetDst: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - sliceCentre: {r: 0, g: 0.183, b: 31.810001, a: 0}
+    - sliceCentre: {r: 0, g: 0.1591301, b: 68.35, a: 0}
     - sliceNormal: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7300365782098890083
