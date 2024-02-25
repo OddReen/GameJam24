@@ -20,6 +20,9 @@ public class RadioRoomBehaviour : MonoBehaviour
 
     [SerializeField] float timerSpace;
 
+    public FMODUnity.EventReference puzzleGood;
+    public FMODUnity.EventReference puzzleBad;
+
     private void Start()
     {
         Instance = this;
@@ -31,16 +34,17 @@ public class RadioRoomBehaviour : MonoBehaviour
     {
         if (canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.GreenRoom)
         {
-            FMODUnity.EventReference puzzleGood;
-            FMODUnity.EventReference puzzleBad;
 
+            FMODUnity.RuntimeManager.PlayOneShot(puzzleGood);
             radioVoice.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             PuzzlesController.instance.radioPuzzle = true;
             PuzzlesController.instance.CheckAllPuzzles();
         }
         else if (!canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.GreenRoom)
         {
+            FMODUnity.RuntimeManager.PlayOneShot(puzzleBad);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            radioVoice.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
     }
 

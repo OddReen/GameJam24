@@ -404,7 +404,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 1200
 --- !u!114 &-4105930669734260404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   Path: Assets/fmod/pace_on_space/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638444562446563735
+  lastModified: 638444602684806152
   FileSizes:
   - Name: Desktop
     Value: 1228
@@ -650,7 +650,7 @@ MonoBehaviour:
   - {fileID: 2398877148973478650}
   StringsBanks:
   - {fileID: -1773773756604917161}
-  cacheTime: 638444562446563735
+  cacheTime: 638444602684806152
   cacheVersion: 131616
 --- !u!114 &155769595209933880
 MonoBehaviour:
@@ -745,10 +745,10 @@ MonoBehaviour:
   Path: Assets/fmod/pace_on_space/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638444562446523652
+  lastModified: 638444602684746215
   FileSizes:
   - Name: Desktop
-    Value: 14973952
+    Value: 15040544
   Exists: 1
 --- !u!114 &3465018690732936470
 MonoBehaviour:
@@ -879,7 +879,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 2000
+  Length: 1660
 --- !u!114 &5934324388091075985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,7 +902,7 @@ MonoBehaviour:
   - {fileID: 2398877148973478650}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters:
   - {fileID: -8539445338576099063}
   - {fileID: 6810933613347924120}
@@ -1091,4 +1091,4 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 13000
+  Length: 1200

@@ -10,6 +10,10 @@ public class PotRoomBehaviour : MonoBehaviour
     [SerializeField] float distanceToComplete;
 
     bool isComplete;
+
+    public FMODUnity.EventReference puzzleGood;
+    public FMODUnity.EventReference puzzleBad;
+
     private void Awake()
     {
         Instance = this;
@@ -22,10 +26,13 @@ public class PotRoomBehaviour : MonoBehaviour
 
             PuzzlesController.instance.potPuzzle = true;
             PuzzlesController.instance.CheckAllPuzzles();
+
+            FMODUnity.RuntimeManager.PlayOneShot(puzzleGood);
         }
         else if (!isComplete && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.PurpleRoom)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            FMODUnity.RuntimeManager.PlayOneShot(puzzleBad);
         }
     }
 

@@ -90,7 +90,7 @@
 	<object class="MixerBusPanner" id="{8c6577b5-7b84-4147-91cd-fe2d1a2a17f7}" />
 	<object class="MultiSound" id="{6fab8b29-0a0f-4aa8-a7e9-c8430d9aeb0d}">
 		<property name="length">
-			<value>2</value>
+			<value>1.6600000000000001</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{b6666b05-b88f-47a2-ba0c-f8e866427012}</destination>

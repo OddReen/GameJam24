@@ -17,8 +17,8 @@ public class PickUpHandler : MonoBehaviour
     Coroutine coroutine;
 
 
-    FMODUnity.EventReference pickUpSound;
-    FMODUnity.EventReference DropSound;
+    public FMODUnity.EventReference pickUpSound;
+    public FMODUnity.EventReference DropSound;
     private void Awake()
     {
         inputHandler = GetComponent<InputHandler>();
