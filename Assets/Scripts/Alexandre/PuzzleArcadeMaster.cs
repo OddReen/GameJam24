@@ -25,7 +25,6 @@ public class PuzzleArcadeMaster : MonoBehaviour
         timeToLock = Random.Range(minTimeToLock, maxTimeToLock);
         StartCoroutine(lockGame());
         arcadesCurrentGames = new string[arcadesScrolls.Length];
-        InvokeRepeating(nameof(GenerateRandomImage), timeScroll, timeScroll);
 
         instance = this;
 
@@ -43,28 +42,6 @@ public class PuzzleArcadeMaster : MonoBehaviour
         {
             ExecutePuzzle();
         }
-    }
-
-    void GenerateRandomImage(int arrayLength)
-    {
-
-        int num1 = Random.Range(0, arcadesScrolls.Length);
-        int num2 = Random.Range(0, arcadesScrolls.Length);
-        int num3 = Random.Range(0, arcadesScrolls.Length);
-
-        while (num2 == num1)
-        {
-            num2 = Random.Range(0, arcadesScrolls.Length);
-        }
-
-        while (num3 == num1 || num3 == num2)
-        {
-            num3 = Random.Range(0, arcadesScrolls.Length);
-        }
-
-        Debug.Log("RandomNumber1: " + num1);
-        Debug.Log("RandomNumber2: " + num2);
-        Debug.Log("RandomNumber3: " + num3);
     }
 
     IEnumerator lockGame()

@@ -22,24 +22,24 @@ public class RadioRoomBehaviour : MonoBehaviour
     {
         Instance = this;
         radioVoice = RuntimeManager.CreateInstance(radioVoiceEvent);
-        ExecutePuzzle();
+        //ExecutePuzzle();
     }
-    public void ExecutePuzzle()
-    {
-        StartCoroutine(TimingToChoose());
-    }
-    IEnumerator TimingToChoose()
-    {
-        radioVoice.start();
-        RuntimeManager.AttachInstanceToGameObject(radioVoice, radio);
-        while (radioVoice)
-        {
-            yield return new WaitForSeconds(beginSpace);
-            canPress = true;
-            yield return new WaitForSeconds(endSpace);
-            canPress = false;
-        }
-        canPress = false;
-    }
+    //public void ExecutePuzzle()
+    //{
+    //    StartCoroutine(TimingToChoose());
+    //}
+    //IEnumerator TimingToChoose()
+    //{
+    //    radioVoice.start();
+    //    RuntimeManager.AttachInstanceToGameObject(radioVoice, radio);
+    //    while (radioVoice)
+    //    {
+    //        yield return new WaitForSeconds(beginSpace);
+    //        canPress = true;
+    //        yield return new WaitForSeconds(endSpace);
+    //        canPress = false;
+    //    }
+    //    canPress = false;
+    //}
 
 }

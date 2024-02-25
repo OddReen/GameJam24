@@ -44,7 +44,7 @@ public class RoomHandler : MonoBehaviour
                 PuzzleArcadeMaster.instance.ExecutePuzzle();
                 break;
             case RoomType.GreenRoom: // radio room
-                RadioRoomBehaviour.Instance.ExecutePuzzle();
+                //RadioRoomBehaviour.Instance.ExecutePuzzle();
                 break;
             case RoomType.PurpleRoom: // pots room
 
