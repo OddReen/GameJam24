@@ -2664,6 +2664,20 @@ MonoBehaviour:
   - {fileID: 193320249}
   - {fileID: 513268493}
   - {fileID: 2111649695}
+  goodSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  badSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!43 &1367639299
 Mesh:
   m_ObjectHideFlags: 0

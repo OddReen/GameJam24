@@ -49,7 +49,7 @@ public class PickUpHandler : MonoBehaviour
             if (hit.collider.CompareTag("Pickable"))
             {
                 pickedUpObject = hit.collider.gameObject;
-                //pickedUpObject.transform.SetParent(pickUpTransform);
+                pickedUpObject.transform.SetParent(null);
                 pickedUpObject.transform.position = pickUpTransform.position;
                 pickedUpObject.transform.rotation = Quaternion.Euler(-90, pickUpTransform.rotation.y, pickUpTransform.rotation.z);
 
@@ -70,6 +70,7 @@ public class PickUpHandler : MonoBehaviour
                 if (hit.collider.transform.childCount == 0)
                 {
                     hit.collider.GetComponent<CosmosPillar>().PutObjectOnTop(pickedUpObject);
+
                     pickedUpObject.GetComponent<Collider>().enabled = true;
                     hasPickedUp = false;
                     StopCoroutine(coroutine);
