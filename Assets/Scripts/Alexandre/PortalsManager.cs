@@ -6,6 +6,8 @@ public class PortalsManager : MonoBehaviour
 {
     public static PortalsManager instance;
     public RoomHandler room;
+    Music musica;
+
 
     [SerializeField] Portal whitePortalUp;
     [SerializeField] PortalsMaffarico WhiteUPM;
@@ -69,19 +71,22 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
                 {
                     UpdatePortalsFunc(GreenPortalUp, PurplePortalUp, GreenPortalDown, whitePortalDown, RoomHandler.RoomType.PurpleRoom, RoomHandler.RoomType.WhiteRoom);
-
-                }
+					musica.ChangeBools(musica.arcadeBool, musica.radioBool);
+				}
                 else if (room.currentRoom == RoomHandler.RoomType.OrangeRoom)
                 {
                     UpdatePortalsFunc(OrangePortalUp, GreenPortalUp, OrangePortalDown, whitePortalDown, RoomHandler.RoomType.GreenRoom, RoomHandler.RoomType.WhiteRoom);
+					musica.ChangeBools(musica.arcadeBool, musica.elementBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.PurpleRoom)
                 {
                     UpdatePortalsFunc(PurplePortalUp, whitePortalUp, PurplePortalDown, GreenPortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.GreenRoom);
+					musica.ChangeBools(musica.arcadeBool, musica.greekBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.WhiteRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, BluePortalUp, whitePortalDown, GreenPortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.GreenRoom);
+					musica.ChangeBools(musica.arcadeBool, musica.whiteBool);
                 }
                 BluePortalUp.linkedPortal = null;
                 BluePortalDown.linkedPortal = null;
@@ -92,16 +97,17 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, whitePortalUp, BluePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
+					musica.ChangeBools(musica.radioBool, musica.arcadeBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.PurpleRoom)
                 {
                     UpdatePortalsFunc(PurplePortalUp, whitePortalUp, PurplePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
-
+                    musica.ChangeBools(musica.radioBool, musica.greekBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.OrangeRoom)
                 {
                     UpdatePortalsFunc(OrangePortalUp, BluePortalUp, OrangePortalDown, whitePortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.WhiteRoom);
-
+                    musica.ChangeBools(musica.radioBool, musica.elementBool);
                 }
                 GreenPortalUp.linkedPortal = null;
                 GreenPortalDown.linkedPortal = null;
@@ -111,19 +117,22 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.WhiteRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, BluePortalUp, whitePortalDown, GreenPortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.GreenRoom);
+					musica.ChangeBools(musica.greekBool, musica.whiteBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, whitePortalUp, BluePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
-
+                    musica.ChangeBools(musica.greekBool, musica.arcadeBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.OrangeRoom)
                 {
                     UpdatePortalsFunc(OrangePortalUp, GreenPortalUp, OrangePortalDown, whitePortalDown, RoomHandler.RoomType.GreenRoom, RoomHandler.RoomType.WhiteRoom);
+					musica.ChangeBools(musica.greekBool, musica.elementBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
                 {
                     UpdatePortalsFunc(GreenPortalUp, PurplePortalUp, GreenPortalDown, whitePortalDown, RoomHandler.RoomType.PurpleRoom, RoomHandler.RoomType.WhiteRoom);
+					musica.ChangeBools(musica.greekBool, musica.radioBool);
                 }
                 PurplePortalUp.linkedPortal = null;
                 PurplePortalDown.linkedPortal = null;
@@ -133,11 +142,17 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, whitePortalUp, BluePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
+                    musica.ChangeBools(musica.elementBool, musica.arcadeBool);
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.WhiteRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, BluePortalUp, whitePortalDown, GreenPortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.GreenRoom);
-
+                    musica.ChangeBools(musica.elementBool, musica.whiteBool);
+                }
+                else if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
+                {
+                    UpdatePortalsFunc(whitePortalUp, whitePortalUp, whitePortalDown, PurplePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.PurpleRoom);
+                    musica.ChangeBools(musica.elementBool, musica.radioBool);
                 }
 
                 OrangePortalUp.linkedPortal = null;
