@@ -12,6 +12,9 @@ public class PickUpHandler : MonoBehaviour
     [SerializeField] GameObject pickedUpObject;
 
     [SerializeField] Material invisible;
+    GameObject ghostObject;
+
+    Coroutine coroutine;
 
     private void Awake()
     {
@@ -36,13 +39,14 @@ public class PickUpHandler : MonoBehaviour
         {
             if (hit.collider.CompareTag("Pickable"))
             {
-                hit.collider.transform.position = pickUpTransform.position;
-                hit.collider.transform.rotation = pickUpTransform.rotation;
-                hit.collider.transform.SetParent(pickUpTransform);
-                hit.collider.enabled = false;
                 pickedUpObject = hit.collider.gameObject;
+                pickedUpObject.transform.SetParent(pickUpTransform);
+                pickedUpObject.transform.position = pickUpTransform.position;
+                pickedUpObject.transform.rotation = Quaternion.Euler(-90, pickUpTransform.rotation.y, pickUpTransform.rotation.z);
+
+                pickedUpObject.GetComponent<Collider>().enabled = false;
                 hasPickedUp = true;
-                StartCoroutine(GhostingHighlight());
+                coroutine = StartCoroutine(GhostingHighlight());
             }
         }
     }
@@ -51,10 +55,28 @@ public class PickUpHandler : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, distanceToPickUp, ~playerLayer))
         {
-            hit.point = pickUpTransform.position;
-            pickedUpObject = hit.collider.gameObject;
+            if (hit.collider.CompareTag("Pillar"))
+            {
+                if (hit.collider.transform.childCount == 0)
+                {
+                    hit.collider.GetComponent<CosmosPillar>().PutObjectOnTop(pickedUpObject);
+                    pickedUpObject.GetComponent<Collider>().enabled = true;
+                    hasPickedUp = false;
+                    StopCoroutine(coroutine);
+                    Destroy(ghostObject);
+                    pickedUpObject = null;
+                }
+                return;
+            }
+            pickedUpObject.transform.parent = null;
+            pickedUpObject.transform.position = hit.point;
+            pickedUpObject.GetComponent<Collider>().enabled = true;
+            pickedUpObject.transform.rotation = Quaternion.Euler(-90, 0, 0); // MAD CODE HERE!!!!!!!!!
             hasPickedUp = false;
-            StopCoroutine(GhostingHighlight());
+            StopCoroutine(coroutine);
+            Destroy(ghostObject);
+            pickedUpObject = null;
+            PotRoomBehaviour.Instance.PotsDistance();
         }
     }
     private IEnumerator IsPickingUp()
@@ -64,20 +86,21 @@ public class PickUpHandler : MonoBehaviour
     }
     private IEnumerator GhostingHighlight()
     {
-        GameObject gameObject = Instantiate(pickedUpObject);
-        gameObject.GetComponent<MeshRenderer>().material = invisible;
+        ghostObject = Instantiate(pickedUpObject);
+        ghostObject.GetComponent<MeshRenderer>().material = invisible;
         while (true)
         {
-            yield return new WaitForEndOfFrame();
+            yield return null;
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, distanceToPickUp, ~playerLayer))
             {
-                gameObject.SetActive(true);
-                gameObject.transform.position = hit.point + Vector3.up * .5f;
+                ghostObject.SetActive(true);
+                ghostObject.transform.position = hit.point;
+                ghostObject.transform.rotation = Quaternion.Euler(-90, 0, 0);
             }
             else
             {
-                gameObject.SetActive(false);
+                ghostObject.SetActive(false);
             }
         }
     }

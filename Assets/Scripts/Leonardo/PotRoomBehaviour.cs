@@ -2,37 +2,46 @@ using UnityEngine;
 
 public class PotRoomBehaviour : MonoBehaviour
 {
+    public static PotRoomBehaviour Instance;
+
     [SerializeField] Transform[] pots;
-    bool isCompleted;
 
     [SerializeField] float distanceToComplete;
-
-    public void ExecutePuzzle()
+    private void Awake()
     {
-        //StartCoroutine(DistanceBetweenPots());
+        Instance = this;
     }
-    //IEnumerator DistanceBetweenPots()
-    //{
-    //    while (true)
-    //    {
-    //        yield return null;
-    //        for (int i = 0; i < pots.Length; i++) //First Pot
-    //        {
+    public void PotsDistance()
+    {
+        for (int i = 0; i < pots.Length; i++) // First Pot
+        {
+            float minDis = float.PositiveInfinity;
+            Transform minDisTrans = null;
 
-    //            for (int d = 0; d < pots.Length; d++)
-    //            {
-    //                if (i == d)
-    //                {
-    //                    continue;
-    //                }
-    //                if (Vector3.Distance(pots[i].position, pots[d].position))
-    //                {
-
-    //                }
-    //            }
-    //        }
-    //    }
-    //}
+            for (int d = 0; d < pots.Length; d++) // Second Pot
+            {
+                if (i == d)
+                {
+                    continue;
+                }
+                float currentDis = Vector3.Distance(pots[i].position, pots[d].position);
+                if (currentDis < minDis)
+                {
+                    minDis = currentDis;
+                    minDisTrans = pots[d];
+                }
+            }
+            if (Vector3.Distance(pots[i].position, minDisTrans.position) < distanceToComplete)
+            {
+                return;
+            }
+        }
+        Completed();
+    }
+    private void Completed()
+    {
+        Debug.Log("Completed");
+    }
     private void OnDrawGizmos()
     {
         for (int i = 0; i < pots.Length; i++) // First Pot
@@ -57,7 +66,7 @@ public class PotRoomBehaviour : MonoBehaviour
                 Gizmos.color = Color.red;
             else
                 Gizmos.color = Color.green;
-            Gizmos.DrawLine(pots[i].position, minDisTrans.position);
+            Gizmos.DrawLine(pots[i].position + Vector3.up * 0.5f, minDisTrans.position + Vector3.up * 0.5f);
         }
     }
 }
