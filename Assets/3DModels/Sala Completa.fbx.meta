@@ -7,33 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: 6a4663413d14b6978bdec8b66e46e7ea
-    second: {fileID: 2100000, guid: 501072668d822164187e4f005f20f389, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: 754858fea42d27040d6e5b25d68ff9eb
-    second: {fileID: 2100000, guid: 32d1971dacf6bbc4d9f8affd980b3585, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: OIP
-    second: {fileID: 2100000, guid: 8b54b874c5887b24ea408ffec7bb8350, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: bd45310be89be80c750a35ee5f6abef1
-    second: {fileID: 2100000, guid: c7719c9db4b051d4e8ef07855b526e38, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
       name: objetos
     second: {fileID: 2100000, guid: 1dd697f5613645448aff86f26e788665, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: posters
-    second: {fileID: 2100000, guid: 60b2cfec6d44e474399fe93eb256c5ef, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
