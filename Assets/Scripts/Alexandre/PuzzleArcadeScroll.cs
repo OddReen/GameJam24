@@ -39,7 +39,7 @@ public class PuzzleArcadeScroll : MonoBehaviour
         do
         {
             ImagesIndex = Random.Range(1, ImagesScroll.Length);
-            Debug.Log("Random: " + ImagesIndex + " | last index: " + lastIndex);
+            //Debug.Log("Random: " + ImagesIndex + " | last index: " + lastIndex);
         } while (ImagesIndex == lastIndex);
 
         rend.sprite = ImagesScroll[ImagesIndex];
