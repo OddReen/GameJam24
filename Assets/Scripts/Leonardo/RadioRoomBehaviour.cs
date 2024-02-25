@@ -2,6 +2,7 @@ using FMOD.Studio;
 using FMODUnity;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class RadioRoomBehaviour : MonoBehaviour
@@ -16,30 +17,47 @@ public class RadioRoomBehaviour : MonoBehaviour
     [SerializeField] float endSpace;
     [SerializeField] float endSound;
     [SerializeField] bool canPress = false;
-    bool isPlaying = true;
+
+    [SerializeField] float timerSpace;
 
     private void Start()
     {
         Instance = this;
         radioVoice = RuntimeManager.CreateInstance(radioVoiceEvent);
-        //ExecutePuzzle();
+        ExecutePuzzle();
     }
-    //public void ExecutePuzzle()
-    //{
-    //    StartCoroutine(TimingToChoose());
-    //}
-    //IEnumerator TimingToChoose()
-    //{
-    //    radioVoice.start();
-    //    RuntimeManager.AttachInstanceToGameObject(radioVoice, radio);
-    //    while (radioVoice)
-    //    {
-    //        yield return new WaitForSeconds(beginSpace);
-    //        canPress = true;
-    //        yield return new WaitForSeconds(endSpace);
-    //        canPress = false;
-    //    }
-    //    canPress = false;
-    //}
+
+    private void Update()
+    {
+        if (canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.BlueRoom)
+        {
+            radioVoice.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            PuzzlesController.instance.radioPuzzle = true;
+            PuzzlesController.instance.CheckAllPuzzles();
+        }
+        else if (!canPress && Input.GetKey(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.BlueRoom)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    public void ExecutePuzzle()
+    {
+        StartCoroutine(TimingToChoose());
+    }
+    IEnumerator TimingToChoose()
+    {
+        radioVoice.start();
+        RuntimeManager.AttachInstanceToGameObject(radioVoice, radio);
+        yield return new WaitForSeconds(beginSpace);
+        canPress = true;
+        yield return new WaitForSeconds(endSpace);
+        canPress = false;
+        yield return new WaitForSeconds(endSound);
+
+        yield return new WaitForSeconds(5f);
+        ExecutePuzzle();
+    }
+
 
 }

@@ -90,6 +90,10 @@ public class PuzzleArcadeMaster : MonoBehaviour
             {
                 arcadesScrolls[i].CancelInvoke();
                 arcadesScrolls[i].rend.sprite = FinalImage;
+
+                PuzzlesController.instance.arcadePuzzle = true;
+                PuzzlesController.instance.CheckAllPuzzles();
+
             }
         }
         else
