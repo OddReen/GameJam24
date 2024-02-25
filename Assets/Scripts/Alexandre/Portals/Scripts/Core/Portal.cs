@@ -85,9 +85,9 @@ public class Portal : MonoBehaviour
                 RoomHandler.Instance.currentRoom = NextRoomType;
                 for (int j = 0; j < portaisMafaricos.Length; j++)
                 {
-                    Debug.Log("Hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
-                    portaisMafaricos[j].toTP = false    ;
+                    portaisMafaricos[j].toTP = false;
                 }
+                Tutorial.instance.ManageTutorial();
                 PortalsManager.instance.SwitchPortals();
 
 

@@ -39,7 +39,7 @@ public class PuzzleArcadeMaster : MonoBehaviour
         }
 
         //tirar
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && RoomHandler.Instance.currentRoom == RoomHandler.RoomType.BlueRoom)
         {
             ExecutePuzzle();
         }
