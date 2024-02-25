@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{fac4ba1b-ad1f-4b1b-984a-9f684dd98f8d}">
+		<property name="name">
+			<value>Greek</value>
+		</property>
+		<relationship name="folder">
+			<destination>{2a7d2eaf-4f8c-46d9-a18b-75c92af5719a}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{285f91b8-56a8-4ab3-a81e-2962b2a2f384}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{285f91b8-56a8-4ab3-a81e-2962b2a2f384}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

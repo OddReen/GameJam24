@@ -5,23 +5,31 @@ using UnityEngine;
 public class RoomHandler : MonoBehaviour
 {
     public static RoomHandler Instance;
-    [SerializeField] RoomType roomToTeleport;
 
+    public RoomType LastRoom;
     public RoomType currentRoom;
-
+    InputHandler input;
     public enum RoomType
     {
         WhiteRoom,
-        ArcadeRoom,
-        RadioRoom,
-        PotRoom,
-        CosmosRoom
+        BlueRoom,
+        GreenRoom,
+        PurpleRoom,
+        OrangeRoom
     }
 
     private void Awake()
     {
         Instance = this;
         currentRoom = RoomType.WhiteRoom;
+    }
+
+    private void Update()
+    {
+        if (input.isChoosing)
+        {
+            ActivateMinigame(currentRoom);
+        }
     }
 
     public void ActivateMinigame(RoomType roomType)
@@ -31,16 +39,16 @@ public class RoomHandler : MonoBehaviour
         {
             case RoomType.WhiteRoom:
                 break;
-            case RoomType.ArcadeRoom:
-
+            case RoomType.BlueRoom: //arcade room
+                PuzzleArcadeMaster.instance.ExecutePuzzle();
                 break;
-            case RoomType.RadioRoom:
+            case RoomType.GreenRoom: // radio room
                 RadioRoomBehaviour.Instance.ExecutePuzzle();
                 break;
-            case RoomType.PotRoom:
+            case RoomType.PurpleRoom: // pots room
 
                 break;
-            case RoomType.CosmosRoom:
+            case RoomType.OrangeRoom: // Elementos room
 
                 break;
         }

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PuzzleArcadeMaster : MonoBehaviour
 {
-    PuzzleArcadeMaster instance;
+    public static PuzzleArcadeMaster instance;
 
     float timeToLock;
     [SerializeField] float minTimeToLock;
@@ -16,6 +16,7 @@ public class PuzzleArcadeMaster : MonoBehaviour
     [SerializeField] float timeScroll;
     [SerializeField] List<int> shuffledList;
     [SerializeField] Sprite SpaceInvaders;
+    [SerializeField] Sprite FinalImage;
 
 
 
@@ -25,6 +26,8 @@ public class PuzzleArcadeMaster : MonoBehaviour
         StartCoroutine(lockGame());
         arcadesCurrentGames = new string[arcadesScrolls.Length];
         InvokeRepeating(nameof(GenerateRandomImage), timeScroll, timeScroll);
+
+        instance = this;
 
     }
 
@@ -80,7 +83,7 @@ public class PuzzleArcadeMaster : MonoBehaviour
         StartCoroutine(lockGame());
     }
 
-    void ExecutePuzzle()
+    public void ExecutePuzzle()
     {
         //int counterGames = 0;
 
@@ -103,11 +106,18 @@ public class PuzzleArcadeMaster : MonoBehaviour
 
         if (arcadesScrolls[0].currentImage == "SpaceInvaders")
         {
+
             Debug.Log("Win");
+            StopAllCoroutines();
+            for (int i = 0; i < arcadesScrolls.Length; i++)
+            {
+                arcadesScrolls[i].CancelInvoke();
+                arcadesScrolls[i].rend.sprite = FinalImage;
+            }
         }
         else
         {
-            Debug.Log("Lose");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 

@@ -21,6 +21,11 @@ public class Portal : MonoBehaviour
     List<PortalTraveller> trackedTravellers;
     MeshFilter screenMeshFilter;
 
+
+    public RoomHandler.RoomType NextRoomType;
+    [SerializeField] PortalsMaffarico[] portaisMafaricos;
+
+
     void Awake()
     {
         playerCam = Camera.main;
@@ -34,6 +39,18 @@ public class Portal : MonoBehaviour
     void LateUpdate()
     {
         HandleTravellers();
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            UpdateTexture();
+        }
+    }
+
+    public void UpdateTexture()
+    {
+        viewTexture = null;
+        RenderCamera();
+        //CreateViewTexture();
     }
 
     void HandleTravellers()
@@ -53,12 +70,26 @@ public class Portal : MonoBehaviour
             {
                 var positionOld = travellerT.position;
                 var rotOld = travellerT.rotation;
+
+                //Vector3 test = linkedPortal.transform.position;
+                //test.x += 10;
+                //linkedPortal.transform.position = test;
+
                 traveller.Teleport(transform, linkedPortal.transform, m.GetColumn(3), m.rotation);
                 traveller.graphicsClone.transform.SetPositionAndRotation(positionOld, rotOld);
                 // Can't rely on OnTriggerEnter/Exit to be called next frame since it depends on when FixedUpdate runs
                 linkedPortal.OnTravellerEnterPortal(traveller);
                 trackedTravellers.RemoveAt(i);
                 i--;
+                RoomHandler.Instance.LastRoom = RoomHandler.Instance.currentRoom;
+                RoomHandler.Instance.currentRoom = NextRoomType;
+                for (int j = 0; j < portaisMafaricos.Length; j++)
+                {
+                    Debug.Log("Hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                    portaisMafaricos[j].toTP = false    ;
+                }
+                PortalsManager.instance.SwitchPortals();
+
 
             }
             else
@@ -83,8 +114,17 @@ public class Portal : MonoBehaviour
     // Called after PrePortalRender, and before PostPortalRender
     public void Render()
     {
+        RenderCamera();
+    }
 
+    public void RenderCamera()
+    {
         // Skip rendering the view from this portal if player is not looking at the linked portal
+        if (linkedPortal == null)
+        {
+            return;
+        }
+
         if (!CameraUtility.VisibleFromCamera(linkedPortal.screen, playerCam))
         {
             return;
