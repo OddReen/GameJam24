@@ -6,7 +6,7 @@ public class PortalsManager : MonoBehaviour
 {
     public static PortalsManager instance;
     public RoomHandler room;
-    Music musica;
+    [SerializeField] Music musica;
 
 
     [SerializeField] Portal whitePortalUp;
@@ -42,6 +42,7 @@ public class PortalsManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        musica = FindObjectOfType<Music>();
     }
 
     public void SwitchPortals()
@@ -54,12 +55,20 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, GreenPortalUp, BluePortalDown, PurplePortalDown, RoomHandler.RoomType.GreenRoom, RoomHandler.RoomType.PurpleRoom);
+                    //musica.ChangeBools(musica.whiteBool, musica.arcadeBool);
+                    musica.whiteBool = false;
+                    musica.arcadeBool = true;
+
                     GreenUM.toTP = true;
                     PurpleDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
                 {
                     UpdatePortalsFunc(GreenPortalUp, OrangePortalUp, GreenPortalDown, BluePortalDown, RoomHandler.RoomType.OrangeRoom, RoomHandler.RoomType.BlueRoom);
+                    //musica.ChangeBools(musica.whiteBool, musica.radioBool);
+                    musica.whiteBool = false;
+                    musica.radioBool = true;
+
                     OrangeUM.toTP = true;
                     BlueDPM.toTP = true;
                 }
@@ -71,22 +80,40 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
                 {
                     UpdatePortalsFunc(GreenPortalUp, PurplePortalUp, GreenPortalDown, whitePortalDown, RoomHandler.RoomType.PurpleRoom, RoomHandler.RoomType.WhiteRoom);
-					musica.ChangeBools(musica.arcadeBool, musica.radioBool);
-				}
+                    //musica.ChangeBools(musica.arcadeBool, musica.radioBool);
+                    musica.arcadeBool = false;
+                    musica.radioBool = true;
+
+                    PurpleUM.toTP = true;
+                    WhiteDPM.toTP = true;
+                }
                 else if (room.currentRoom == RoomHandler.RoomType.OrangeRoom)
                 {
                     UpdatePortalsFunc(OrangePortalUp, GreenPortalUp, OrangePortalDown, whitePortalDown, RoomHandler.RoomType.GreenRoom, RoomHandler.RoomType.WhiteRoom);
-					musica.ChangeBools(musica.arcadeBool, musica.elementBool);
+                    //musica.ChangeBools(musica.arcadeBool, musica.elementBool);
+                    musica.arcadeBool = false;
+                    musica.elementBool = true;
+
+
+                    GreenUM.toTP = true;
+                    WhiteDPM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.PurpleRoom)
                 {
                     UpdatePortalsFunc(PurplePortalUp, whitePortalUp, PurplePortalDown, GreenPortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.GreenRoom);
-					musica.ChangeBools(musica.arcadeBool, musica.greekBool);
+                    musica.ChangeBools(musica.arcadeBool, musica.greekBool);
+                    WhiteUPM.toTP = true;
+                    GreenDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.WhiteRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, BluePortalUp, whitePortalDown, GreenPortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.GreenRoom);
-					musica.ChangeBools(musica.arcadeBool, musica.whiteBool);
+                    //musica.ChangeBools(musica.arcadeBool, musica.whiteBool);
+                    musica.arcadeBool = false;
+                    musica.whiteBool = true;
+
+                    BlueUPM.toTP = true;
+                    GreenDM.toTP = true;
                 }
                 BluePortalUp.linkedPortal = null;
                 BluePortalDown.linkedPortal = null;
@@ -97,17 +124,35 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, whitePortalUp, BluePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
-					musica.ChangeBools(musica.radioBool, musica.arcadeBool);
+                    //musica.ChangeBools(musica.radioBool, musica.arcadeBool);
+                    musica.radioBool = false;
+                    musica.arcadeBool = true;
+
+
+                    WhiteUPM.toTP = true;
+                    OrangeDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.PurpleRoom)
                 {
                     UpdatePortalsFunc(PurplePortalUp, whitePortalUp, PurplePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
-                    musica.ChangeBools(musica.radioBool, musica.greekBool);
+                    //musica.ChangeBools(musica.radioBool, musica.greekBool);
+                    musica.radioBool = false;
+                    musica.greekBool = true;
+
+
+                    WhiteUPM.toTP = true;
+                    OrangeDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.OrangeRoom)
                 {
                     UpdatePortalsFunc(OrangePortalUp, BluePortalUp, OrangePortalDown, whitePortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.WhiteRoom);
-                    musica.ChangeBools(musica.radioBool, musica.elementBool);
+                    //musica.ChangeBools(musica.radioBool, musica.elementBool);
+                    musica.radioBool = false;
+                    //musica.elementBool = true;
+
+
+                    BlueUPM.toTP = true;
+                    WhiteDPM.toTP = true;
                 }
                 GreenPortalUp.linkedPortal = null;
                 GreenPortalDown.linkedPortal = null;
@@ -117,22 +162,43 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.WhiteRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, BluePortalUp, whitePortalDown, GreenPortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.GreenRoom);
-					musica.ChangeBools(musica.greekBool, musica.whiteBool);
+                    //musica.ChangeBools(musica.greekBool, musica.whiteBool);
+                    musica.greekBool = false;
+                    musica.whiteBool = true;
+
+                    BlueUPM.toTP = true;
+                    GreenDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, whitePortalUp, BluePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
-                    musica.ChangeBools(musica.greekBool, musica.arcadeBool);
+                    //musica.ChangeBools(musica.greekBool, musica.arcadeBool);
+
+                    musica.greekBool = false;
+                    musica.arcadeBool = true;
+
+                    WhiteUPM.toTP = true;
+                    OrangeDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.OrangeRoom)
                 {
                     UpdatePortalsFunc(OrangePortalUp, GreenPortalUp, OrangePortalDown, whitePortalDown, RoomHandler.RoomType.GreenRoom, RoomHandler.RoomType.WhiteRoom);
-					musica.ChangeBools(musica.greekBool, musica.elementBool);
+                    //musica.ChangeBools(musica.greekBool, musica.elementBool);
+                    musica.greekBool = false;
+                    musica.elementBool = true;
+
+                    GreenUM.toTP = true;
+                    WhiteDPM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
                 {
                     UpdatePortalsFunc(GreenPortalUp, PurplePortalUp, GreenPortalDown, whitePortalDown, RoomHandler.RoomType.PurpleRoom, RoomHandler.RoomType.WhiteRoom);
-					musica.ChangeBools(musica.greekBool, musica.radioBool);
+                    //musica.ChangeBools(musica.greekBool, musica.radioBool);
+                    musica.greekBool = false;
+                    musica.radioBool = true;
+
+                    PurpleUM.toTP = true;
+                    WhiteDPM.toTP = true;
                 }
                 PurplePortalUp.linkedPortal = null;
                 PurplePortalDown.linkedPortal = null;
@@ -142,17 +208,32 @@ public class PortalsManager : MonoBehaviour
                 if (room.currentRoom == RoomHandler.RoomType.BlueRoom)
                 {
                     UpdatePortalsFunc(BluePortalUp, whitePortalUp, BluePortalDown, OrangePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.OrangeRoom);
-                    musica.ChangeBools(musica.elementBool, musica.arcadeBool);
+                    //musica.ChangeBools(musica.elementBool, musica.arcadeBool);
+                    musica.elementBool = false;
+                    musica.arcadeBool = true;
+
+                    WhiteUPM.toTP = true;
+                    OrangeDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.WhiteRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, BluePortalUp, whitePortalDown, GreenPortalDown, RoomHandler.RoomType.BlueRoom, RoomHandler.RoomType.GreenRoom);
-                    musica.ChangeBools(musica.elementBool, musica.whiteBool);
+                    //musica.ChangeBools(musica.elementBool, musica.whiteBool);
+                    musica.elementBool = false;
+                    musica.whiteBool = true;
+
+                    BlueUPM.toTP = true;
+                    GreenDM.toTP = true;
                 }
                 else if (room.currentRoom == RoomHandler.RoomType.GreenRoom)
                 {
                     UpdatePortalsFunc(whitePortalUp, whitePortalUp, whitePortalDown, PurplePortalDown, RoomHandler.RoomType.WhiteRoom, RoomHandler.RoomType.PurpleRoom);
-                    musica.ChangeBools(musica.elementBool, musica.radioBool);
+                    //musica.ChangeBools(musica.elementBool, musica.radioBool);
+                    musica.elementBool = false;
+                    musica.radioBool = true;
+
+                    WhiteUPM.toTP = true;
+                    PurpleDM.toTP = true;
                 }
 
                 OrangePortalUp.linkedPortal = null;

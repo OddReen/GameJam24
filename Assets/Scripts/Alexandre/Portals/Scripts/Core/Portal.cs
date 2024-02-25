@@ -36,6 +36,14 @@ public class Portal : MonoBehaviour
         screen.material.SetInt("displayMask", 1);
     }
 
+    private void Update()
+    {
+        if(linkedPortal == null)
+        {
+
+        }
+    }
+
     void LateUpdate()
     {
         HandleTravellers();
